@@ -73,6 +73,5 @@ def parse_raw_query(raw_query: str):
 
 def parse_json_query(json_query: str):
     q = json.loads(json_query)
-    print(q)
     query = build_query(q)
     return query
