@@ -1,10 +1,10 @@
-from se.query import parse_json_query
-from se.retrieve import retrieve
-from se.rank import rank_documents
+from .query import parse_raw_query
+from .rank import rank_documents
+from .index import Index
 
 
-def search(raw_query, index, docs):
-    query = parse_json_query(raw_query)
+def search(raw_query, index: Index, docs):
+    query = parse_raw_query(raw_query)
     index_query = query.evaluate(index)
-    ranked_index = rank_documents(query, docs, index_query)
+    ranked_index = rank_documents(query, docs, index_query, index)
     return [docs[k] for k in ranked_index]
